@@ -1,24 +1,43 @@
-# README
+# テーブル設計 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+##  テーブル
 
-* Ruby version
+| Column                | Type        | Options                        |
+| --------------------- | ----------- | ------------------------------ |
+|                  | string      |                                |
+|     | string      | null: false, unique: true      |
+|                   | string      | null: false                    |
+|                | text        | null: false                    |
+|             | text        | null: false                    |
+|               | text        | null: false                    |
 
-* System dependencies
+###  Association
+- has_many :
+- has_many :
 
-* Configuration
 
-* Database creation
+##  テーブル
 
-* Database initialization
+| Column                | Type        | Options                        |
+| --------------------- | ----------- | ------------------------------ |
+|                | text        | null: false                    |
+|              | references  | null: false, foreign_key: true |
+|                   | references  | null: false, foreign_key: true |
 
-* How to run the test suite
+###  Association
+- belongs_to :
+- belongs_to :
 
-* Services (job queues, cache servers, search engines, etc.)
+##  テーブル
 
-* Deployment instructions
+| Column                | Type        | Options                        |
+| --------------------- | ----------- | ------------------------------ |
+|                  | string      | null: false                    |
+|             | text        | null: false                    |
+|                | text        | null: false                    |
+|                   | references  | null: false, foreign_key: true |
 
-* ...
+### 　Association
+- belongs_to :
+- has_many :

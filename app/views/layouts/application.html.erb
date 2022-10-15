@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>Furima38184</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <script type="text/javascript" src="https://js.pay.jp/v1/"></script>
+  <%= stylesheet_link_tag 'application', media: 'all'%>
+  <!--Webpacker::Manifest::MissingEntryError in Items#indexエラー発生//rails webpacker:installで解決1015-->
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  
+</head>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<body>
+  <%= yield %>
+</body>
 
-  <body>
-    <%= yield %>
-  </body>
 </html>

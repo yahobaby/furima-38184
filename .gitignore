@@ -29,3 +29,5 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+#不要ファイル除外1014
+.Ds_Store
