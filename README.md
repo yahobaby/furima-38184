@@ -1,5 +1,4 @@
-# テーブル設計 1回目作成完了20221019 2回目修正1021
-
+# テーブル設計 1回目作成完了20221019 2回目修正1021 3回目修正
 
 ## ①usersテーブル
 
@@ -17,8 +16,7 @@
 
 ### users Association
 - has_many : items
-- has_many : consumer_profiles
-- has_one : API(pay.jp)
+- has_many : orders
 
 
 ## ②itemsテーブル
@@ -36,37 +34,28 @@
 | delivery_days         | integer     | null: false                    |
 
 ### items Association
-- has_one_attached : images
 - belongs_to : user
+- has_one : order
 
-
-## ③imagesテーブル
-
-| Column                | Type        | Options                        |
-| --------------------- | ----------- | ------------------------------ |
-| item                  | references  | null: false, foreign_key: true |
-| image                 |             | null: false                    |
-
-### images Association
-- belongs_to : item
-
-## ④consumer_profilesテーブル
+## ③ordersテーブル
 | Column                | Type        | Options                        |
 | --------------------- | ----------- | ------------------------------ |
 | user                  | references  | null: false, foreign_key: true |
+| item                  | references  | null: false, foreign_key: true |
+
+### orders Association
+- belongs_to : user
+- has_one : item
+- has_one : address
+
+## ④addressesテーブル
+| Column                | Type        | Options                        |
+| --------------------- | ----------- | ------------------------------ |
+| order                 | references  | null: false, foreign_key: true |
 | last_name_kana        | string      | null: false                    |
 | first_name_kana       | string      | null: false                    |
 | last_name_kanji       | string      | null: false                    |
 | first_name_kanji      | string      | null: false                    |
-
-### consumer_profiles Association
-- belongs_to : user
-- has_one : consumer_address
-
-## ⑤consumer_addressesテーブル
-| Column                | Type        | Options                        |
-| --------------------- | ----------- | ------------------------------ |
-| consumer_profile      | references  | null: false, foreign_key: true |
 | post_code             | integer     | null: false                    |
 | prefecture            | integer     | null: false                    |
 | city                  | string      | null: false                    |
@@ -74,5 +63,5 @@
 | building_name         | string      | null: false                    |
 | phone_number          | integer     | null: false                    |
 
-### consumer_addresses Association
-- belongs_to : consumer_profile
+### addresses Association
+- belongs_to : order
