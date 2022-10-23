@@ -28,12 +28,6 @@
                 <mxCell id="38" value="sending_area_id" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="2" vertex="1">
                     <mxGeometry y="206" width="160" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="84" value="" style="edgeStyle=none;rounded=0;html=1;endArrow=ERoneToMany;endFill=0;startArrow=ERone;startFill=0;exitX=0.444;exitY=-0.004;exitDx=0;exitDy=0;exitPerimeter=0;" parent="2" source="7" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="71.66488715210994" y="328" as="sourcePoint"/>
-                        <mxPoint x="70" y="291.00307692307695" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
                 <mxCell id="39" value="delivery_days_id" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="2" vertex="1">
                     <mxGeometry y="236" width="160" height="30" as="geometry"/>
                 </mxCell>
@@ -113,6 +107,12 @@
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="159.53999999999996" y="-761.0640000000001" as="sourcePoint"/>
                         <mxPoint x="159.5" y="-813.9969230769229" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="84" value="" style="edgeStyle=none;rounded=0;html=1;endArrow=ERoneToMany;endFill=0;startArrow=ERone;startFill=0;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="420" y="-700" as="sourcePoint"/>
+                        <mxPoint x="420" y="-761" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
             </root>
