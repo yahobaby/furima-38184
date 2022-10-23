@@ -1,4 +1,4 @@
-# テーブル設計 1回目作成完了20221019 2回目修正1021 3回目修正
+# テーブル設計 1回目作成完了20221019 2回目修正1020 3回目修正1022 4回目修正1023
 
 ## ①usersテーブル
 
@@ -25,13 +25,14 @@
 | --------------------- | ----------- | ------------------------------ |
 | user                  | references  | null: false, foreign_key: true |
 | category_id           | integer     | null: false                    |
-| band_id               | integer     | null: false                    |
+| brand_id              | integer     | null: false                    |
 | item_name             | string      | null: false                    |
-| item_status           | string      | null: false                    |
+| item_explain          | text        | null: false                    |
+| item_status_id        | integer     | null: false                    |
 | price                 | integer     | null: false                    |
-| charge_bearer         | integer     | null: false                    |
-| sending_area          | integer     | null: false                    |
-| delivery_days         | integer     | null: false                    |
+| charge_bearer_id      | integer     | null: false                    |
+| sending_area_id       | integer     | null: false                    |
+| delivery_days_id      | integer     | null: false                    |
 
 ### items Association
 - belongs_to : user
@@ -52,16 +53,12 @@
 | Column                | Type        | Options                        |
 | --------------------- | ----------- | ------------------------------ |
 | order                 | references  | null: false, foreign_key: true |
-| last_name_kana        | string      | null: false                    |
-| first_name_kana       | string      | null: false                    |
-| last_name_kanji       | string      | null: false                    |
-| first_name_kanji      | string      | null: false                    |
-| post_code             | integer     | null: false                    |
-| prefecture            | integer     | null: false                    |
+| post_code             | string      | null: false                    |
+| prefecture_id         | integer     | null: false                    |
 | city                  | string      | null: false                    |
 | address               | string      | null: false                    |
-| building_name         | string      | null: false                    |
-| phone_number          | integer     | null: false                    |
+| building_name         | string      |                                |
+| phone_number          | string      | null: false                    |
 
 ### addresses Association
 - belongs_to : order
