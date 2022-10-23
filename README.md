@@ -1,4 +1,4 @@
-# テーブル設計 1回目作成完了20221019 2回目修正1020 3回目修正1022 4回目修正1023
+# テーブル設計 1回目作成完了20221019 2回目修正1020 3回目修正1022 4回目修正1023 5回目修正10231518 
 
 ## ①usersテーブル
 
@@ -25,7 +25,7 @@
 | --------------------- | ----------- | ------------------------------ |
 | user                  | references  | null: false, foreign_key: true |
 | category_id           | integer     | null: false                    |
-| brand_id              | integer     | null: false                    |
+| brand                 | string      | null: false                    |
 | item_name             | string      | null: false                    |
 | item_explain          | text        | null: false                    |
 | item_status_id        | integer     | null: false                    |
@@ -46,7 +46,7 @@
 
 ### orders Association
 - belongs_to : user
-- has_one : item
+- belongs_to : item
 - has_one : address
 
 ## ④addressesテーブル
