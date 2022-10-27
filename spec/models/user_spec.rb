@@ -1,4 +1,4 @@
-# 大文字、小文字、気をつける 1回提出：20221027
+# 大文字、小文字、気をつける 1回提出：20221027, 2回目提出：20221028(pwの英字のみ数字のみバリデーション追加)
 
 # RSpecでモデル、ビュー、コントローラーのテストを行うためには、rails_helper.rbというファイルを読み込む必要があり 20221026
 # require 'rails_helper'と記述することで、ファイルを読み込める。
@@ -19,7 +19,7 @@ RSpec.describe User, type: :model do
     end
 
     context '新規登録ができないとき' do
-      it 'nicknameが空では登録できない' do # OK, FactoryBot導入前
+      it 'nicknameが空では登録できない' do # OK
         # itとは？describeメソッド同様、グループ分けを行うメソッド。itはより詳細に、describeメソッドに記述した機能において、どのような状況のテストを行うかを明記
         # itメソッドで分けたグループを、exampleとも呼ぶ
         @user.nickname = '' # 空欄だと「異常になる＝緑」
@@ -67,8 +67,27 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
+      
 
-      # //お名前_漢字検証
+      # //PW追加実装20221028
+      it '英字のみではパスワード入力できず、登録できない' do
+        @user.password = 'hellotechcamp' # passwordを英字のみに入力し
+        @user.password_confirmation = 'hellotechcamp' # password確認もpwと同じ英字のみで入力すると、「異常になる＝緑」
+        @user.valid?
+        # binding.pry
+        expect(@user.errors.full_messages).to include("Password must input alphabet and number")
+      end
+
+      it '数字のみではパスワード入力できず、登録できない' do
+        @user.password = '1234567' # passwordを数字のみに入力し
+        @user.password_confirmation = '1234567' # password確認もpwと同じ数字のみで入力すると、「異常になる＝緑」
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password must input alphabet and number")
+      end
+      # ////PW追加実装
+
+
+      # ////お名前_漢字検証
       # お名前(全角)は、名字と名前がそれぞれ必須であること。
       it 'お名前_漢字「名字」は入力しないと登録できない' do
         @user.last_name_kanji = '' # 漢字の名字が空欄なら、「異常になる＝緑」
@@ -110,7 +129,6 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include('Last name kana is invalid', 'First name kana is invalid')
       end
-
       # ////お名前_カナ検証
 
       it '生年月日を入力しないと登録できない' do # OK
