@@ -1,4 +1,4 @@
-# 大文字、小文字、気をつける 1回提出：20221027, 2回目提出：20221028(pwの英字のみ数字のみバリデーション追加)
+# 大文字、小文字、気をつける 1回提出：20221027, 2回目提出：20221028(pwの英字のみ数字のみバリデーション追加)、3回目提出：20221029(pwのテストコード追加実装と修正)
 
 # RSpecでモデル、ビュー、コントローラーのテストを行うためには、rails_helper.rbというファイルを読み込む必要があり 20221026
 # require 'rails_helper'と記述することで、ファイルを読み込める。
@@ -75,16 +75,26 @@ RSpec.describe User, type: :model do
         @user.password_confirmation = 'hellotechcamp' # password確認もpwと同じ英字のみで入力すると、「異常になる＝緑」
         @user.valid?
         # binding.pry
-        expect(@user.errors.full_messages).to include("Password must input alphabet and number")
+        expect(@user.errors.full_messages).to include("Password must input Half size alphabet and number")
       end
 
       it '数字のみではパスワード入力できず、登録できない' do
         @user.password = '1234567' # passwordを数字のみに入力し
         @user.password_confirmation = '1234567' # password確認もpwと同じ数字のみで入力すると、「異常になる＝緑」
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password must input alphabet and number")
+        expect(@user.errors.full_messages).to include("Password must input Half size alphabet and number")
       end
       # ////PW追加実装
+
+      # ///PW追加実装20221029
+      it '全角文字を含むパスワードでは登録できない' do
+        @user.password = 'loveｔｅｃｈｃａｍｐ' # passwordを英字のみに入力し
+        @user.password_confirmation = 'loveｔｅｃｈｃａｍｐ' # password確認もpwと同じ英字のみで入力すると、「異常になる＝緑」
+        @user.valid?
+        # binding.pry
+        expect(@user.errors.full_messages).to include("Password must input Half size alphabet and number")
+      end
+      # ///PW追加実装
 
 
       # ////お名前_漢字検証
@@ -101,11 +111,16 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("First name kanji can't be blank")
       end
 
-      it 'お名前(全角)は、全角（漢字・ひらがな・カタカナ）で入力しないと登録できない' do
-        @user.last_name_kanji = 'kanji' # 漢字の名字が英字で
-        @user.first_name_kanji = 'kanji' # 漢字の名前も英字なら、「異常になる＝緑」
+      it 'お名前_漢字「名字」は、全角（漢字・ひらがな・カタカナ）で入力しないと登録できない' do
+        @user.last_name_kanji = 'kanji' # 漢字の名字が英字なら、「異常になる＝緑」
         @user.valid?
-        expect(@user.errors.full_messages).to include('Last name kanji is invalid', 'First name kanji is invalid')
+        expect(@user.errors.full_messages).to include('Last name kanji is invalid')
+      end
+
+      it 'お名前_漢字「名前」は、全角（漢字・ひらがな・カタカナ）で入力しないと登録できない' do
+        @user.first_name_kanji = 'kanji' # 漢字の名前が英字なら、「異常になる＝緑」
+        @user.valid?
+        expect(@user.errors.full_messages).to include('First name kanji is invalid')
       end
       # ////お名前_漢字検証
 
@@ -123,11 +138,16 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("First name kana can't be blank")
       end
 
-      it 'お名前カナ(全角)は、全角（漢字・ひらがな・カタカナ）で入力しないと登録できない' do
-        @user.last_name_kana = '漢字' # カナの名字が漢字で
-        @user.first_name_kana = '漢字' # カナの名前も漢字なら、「異常になる＝緑」
+      it 'お名前カナ(名字)は、全角（漢字・ひらがな・カタカナ）で入力しないと登録できない' do
+        @user.last_name_kana = '漢字' # カナの名字が漢字なら、「異常になる＝緑」
         @user.valid?
-        expect(@user.errors.full_messages).to include('Last name kana is invalid', 'First name kana is invalid')
+        expect(@user.errors.full_messages).to include('Last name kana is invalid')
+      end
+
+      it 'お名前カナ(名前)は、全角（漢字・ひらがな・カタカナ）で入力しないと登録できない' do
+        @user.first_name_kana = '漢字' # カナの名前が漢字なら、「異常になる＝緑」
+        @user.valid?
+        expect(@user.errors.full_messages).to include('First name kana is invalid')
       end
       # ////お名前_カナ検証
 
