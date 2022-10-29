@@ -14,6 +14,7 @@
 | birthday              | date        | null: false                    |
 
 
+
 ### users Association
 - has_many : items
 - has_many : orders

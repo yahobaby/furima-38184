@@ -31,6 +31,22 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+# テストコード実施の為、gem追加//1025
+  gem 'rspec-rails', '~> 4.0.0'
+#//
+# FactoryBot導入、20221026
+  gem 'factory_bot_rails'
+#//
+
+#faker導入20221027
+gem 'faker'
+
+#//コードビュー依頼のため、rubocop入れる20221027
+gem 'rubocop', require: false
+
+
+
 end
 
 group :development do
@@ -57,3 +73,11 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 group :development do
   gem 'rubocop', require: false
 end
+
+# ユーザー管理機能導入の為、gem追加//1024
+gem 'devise'
+#//
+
+#binding.pry導入20221026
+gem 'pry-rails'
+

@@ -1,0 +1,43 @@
+<%= render "shared/second-header"%>
+
+<%# 必要な情報を適切に入力して「ログイン」ボタンを押すと、ユーザーのログインができること。OK%>
+
+<%= form_with model: @user, url: new_user_session_path, class: 'registration-main', local: true do |f| %>
+
+<div class='form-wrap'>
+  <div class='form-header'>
+    <h1 class='form-header-text'>
+      会員情報入力
+    </h1>
+  </div>
+
+<%# ログイン共にエラーハンドリングができること（入力に問題がある状態で「会員登録」または「ログイン」ボタンが押された場合、情報は受け入れられず、各ページでエラーメッセージが表示されること）。OK%>
+<%# エラーハンドリングによって新規登録/ログインページに戻った場合でも、入力済みの項目（パスワード・パスワード確認用以外）は消えないこと。OK %>
+<%# エラーハンドリングの際、重複したエラーメッセージが表示されないこと。OK %>
+  <div class='login-flash-message'>
+    <%= flash[:notice] %>
+    <%= flash[:alert] %>
+  </div>
+<%# // %>
+
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">メールアドレス</label>
+      <span class="indispensable">必須</span>
+    </div>
+    <%= f.email_field :email, class:"input-default", id:"email", placeholder:"PC・携帯どちらでも可", autofocus: true %>
+  </div>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">パスワード</label>
+      <span class="indispensable">必須</span>
+    </div>
+    <%= f.password_field :password, class:"input-default", id:"password", placeholder:"" %>
+  </div>
+  <div class='login-btn'>
+    <%= f.submit "ログイン" ,class:"login-red-btn" %>
+  </div>
+</div>
+<% end %>
+
+<%= render "shared/second-footer"%>
