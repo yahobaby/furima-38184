@@ -67,7 +67,6 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
-      
 
       # //PW追加実装20221028
       it '英字のみではパスワード入力できず、登録できない' do
@@ -75,14 +74,14 @@ RSpec.describe User, type: :model do
         @user.password_confirmation = 'hellotechcamp' # password確認もpwと同じ英字のみで入力すると、「異常になる＝緑」
         @user.valid?
         # binding.pry
-        expect(@user.errors.full_messages).to include("Password must input Half size alphabet and number")
+        expect(@user.errors.full_messages).to include('Password must input Half size alphabet and number')
       end
 
       it '数字のみではパスワード入力できず、登録できない' do
         @user.password = '1234567' # passwordを数字のみに入力し
         @user.password_confirmation = '1234567' # password確認もpwと同じ数字のみで入力すると、「異常になる＝緑」
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password must input Half size alphabet and number")
+        expect(@user.errors.full_messages).to include('Password must input Half size alphabet and number')
       end
       # ////PW追加実装
 
@@ -92,10 +91,9 @@ RSpec.describe User, type: :model do
         @user.password_confirmation = 'loveｔｅｃｈｃａｍｐ' # password確認もpwと同じ英字のみで入力すると、「異常になる＝緑」
         @user.valid?
         # binding.pry
-        expect(@user.errors.full_messages).to include("Password must input Half size alphabet and number")
+        expect(@user.errors.full_messages).to include('Password must input Half size alphabet and number')
       end
       # ///PW追加実装
-
 
       # ////お名前_漢字検証
       # お名前(全角)は、名字と名前がそれぞれ必須であること。
