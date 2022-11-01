@@ -4,6 +4,10 @@ class User < ApplicationRecord #2回目提出：20221028、PW英字+数字組み
          :recoverable, :rememberable, :validatable
   # //ここまでdevise機能
 
+  #アソシエーション
+  has_many :items 
+  #//アソシエーション
+
   # #モデルにてバリデーションの記述を行うこと。OK
   # カラムにバリデーション設定 & 空では保存できない202210241020
   validates :nickname, presence: true
