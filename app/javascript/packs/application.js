@@ -7,6 +7,7 @@ require("@rails/ujs").start()
 // require("turbolinks").start() turbolinksが読み込まれないように編集1014
 require("@rails/activestorage").start()
 require("channels")
+require("../tax_saleprofit") //new.html.erbの販売手数料や販売利益の計算読み込む
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
