@@ -81,3 +81,11 @@ gem 'devise'
 #binding.pry導入20221026
 gem 'pry-rails'
 
+#データベースに保存しないactive_hash導入
+gem 'active_hash'
+
+#ImageMagickの機能をRubyに導入
+gem 'mini_magick'
+
+# MiniMagickでは提供できない、画像サイズを調整する機能を提供するGem
+gem 'image_processing', '~> 1.2'
