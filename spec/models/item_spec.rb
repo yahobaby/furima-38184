@@ -63,15 +63,34 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Delivery days can't be blank")
       end
 
-      it 'カテゴリー、商品状態、配送料の負担、発送元の地域、発送までの日数のidが1で選択された場合は登録されない' do
+      it 'カテゴリーのidが1で選択された場合は登録されない' do
         @item.category_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Category must be other than 1')
+      end
+
+      it '商品状態のidが1で選択された場合は登録されない' do
         @item.item_status_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Item status must be other than 1')
+      end
+
+      it '配送料の負担のidが1で選択された場合は登録されない' do
         @item.charge_bearer_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Charge bearer must be other than 1')
+      end
+
+      it '発送元の地域のidが1で選択された場合は登録されない' do
         @item.sending_area_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Sending area must be other than 1')
+      end
+
+      it '発送までの日数のidが1で選択された場合は登録されない' do
         @item.delivery_days_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Category must be other than 1', 'Item status must be other than 1',
-                                                      'Charge bearer must be other than 1', 'Sending area must be other than 1', 'Delivery days must be other than 1')
+        expect(@item.errors.full_messages).to include('Delivery days must be other than 1')
       end
 
       # 価格関連テスト
@@ -99,6 +118,13 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Price is not a number')
       end
       # //価格関連テスト
+      
+      it 'ユーザーが紐付いていなければ投稿できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('User must exist')
+      end
+
     end
   end
 end

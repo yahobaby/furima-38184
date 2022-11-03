@@ -7,9 +7,9 @@
     <h2 class="items-sell-title">商品の情報を入力</h2>
     <%= form_with model: @item, url: items_path, local: true, method: :post do |f| %>
 
-    <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
+    <%# インスタンスを渡し、エラー発生時にメッセージの表示を設定%>
     <%= render 'shared/error_messages', model: f.object %>
-    <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
+    <%# //インスタンスを渡し、エラー発生時にメッセージの表示を設定%>
 
     <%# 商品画像 %>
     <div class="img-upload">
