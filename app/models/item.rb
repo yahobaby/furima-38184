@@ -22,8 +22,8 @@ class Item < ApplicationRecord
       validates :category_id, :item_status_id, :charge_bearer_id, :sending_area_id, :delivery_days_id
     end
 
-     validates :price, numericality: { greater_than: 300, less_than: 9_999_999, only_integer: true }
-     #only_integer: true 小数点以下は保存しない
+    validates :price, numericality: { greater_than: 300, less_than: 9_999_999, only_integer: true }
+    # only_integer: true 小数点以下は保存しない
   end
 end
-  # //カラムにバリデーション設定
+# //カラムにバリデーション設定

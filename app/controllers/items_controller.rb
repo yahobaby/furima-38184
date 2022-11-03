@@ -1,8 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index] #itemコントローラーの先に実行させる。もし、ログインしてないと、index(一覧表示)アクションしか使えない
+  before_action :authenticate_user!, except: [:index] # itemコントローラーの先に実行させる。もし、ログインしてないと、index(一覧表示)アクションしか使えない
 
   def index
-
   end
 
   def new
