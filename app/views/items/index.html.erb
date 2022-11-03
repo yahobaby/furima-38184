@@ -128,20 +128,52 @@
     </div>
     <ul class='item-lists'>
     
-
-      <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
+    <%# 商品データがある場合、eachメソッドで一覧表示%>
+    <% @items.each do |item| %>
       <li class='list'>
-        <%= link_to "#" do %>
+        <%= link_to root_path do %> <!--商品詳細機能実装時に、各商品詳細ページへ飛ばす。現在はルートパス!-->
+        <div class='item-img-content'>
+        <%= image_tag item.image.variant(resize: '500x500'), class: "item-img" if item.image.attached? %>
+        <!--「学習メモ」.variantでリサイズ!-->
+        <!--「学習メモ」.attached?レコードにファイルが添付有無で、trueかfalseを返すメソッド。ifと組み合わせて、画像の有無によって表示するかどう判断!-->
+
+          <%# 商品が売れていればsold out表示 %>
+          <%# orderテーブル作成後に実装 %>
+          <%# if item.order != nil %>
+          <%# <div class='sold-out'>
+            <span>Sold Out!!</span>
+          </div> %>
+          <%# end %>
+        </div>
         
+        <div class='item-info'>
+          <h3 class='item-name'>
+            <%= item.item_name %>
+          </h3>
+          <div class='item-price'>
+            <span><%= item.price %>円<br><%= item.charge_bearer.name %></span>
+            <div class='star-btn'>
+              <%= image_tag "star.png", class:"star-icon" %>
+              <span class='star-count'>0</span>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </li>
+      <% end %>
+   <%#// 商品データがある場合、eachメソッドで一覧表示%>
+
+   <%# 商品がない場合はダミーを表示する %>
+    <% if @items.blank? then %>
+    <!--「学習メモ」.blank?:@itemインスタンスが空なら!-->
+    <%# soldoutダミー商品を表示 %>
+      <li class='list'>
+        <%= link_to "#" do %><!--soldoutダミー商品ルートパス!-->
         <div class='item-img-content'>
           <%= image_tag "item-sample.png", class: "item-img" %>
-
-          <%# 商品が売れていればsold outを表示しましょう %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
-          <%# //商品が売れていればsold outを表示しましょう %>
-
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
@@ -151,19 +183,17 @@
             <span><%= "販売価格" %>円<br><%= '配送料負担' %></span>
             <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
-              <span class='star-count'>0</span>
+            <span class='star-count'>0</span>
             </div>
           </div>
         </div>
-        <% end %>
+        <% end %><!--end : soldoutダミー商品ルートパス!-->
       </li>
-      <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
-
-      <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
-      <%# 商品がある場合は表示されないようにしましょう %>
+    <%#//soldoutダミー商品を表示 %>
+    <%# 新品を出してね!ダミー商品を表示 %>
       <li class='list'>
-        <%= link_to '#' do %>
-        <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
+      <%= link_to "#" do %><!--ダミー商品ルートパス!-->
+       <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
         <div class='item-info'>
           <h3 class='item-name'>
             商品を出品してね！
@@ -171,20 +201,17 @@
           <div class='item-price'>
             <span>99999999円<br>(税込み)</span>
             <div class='star-btn'>
-              <%= image_tag "star.png", class:"star-icon" %>
-              <span class='star-count'>0</span>
-            </div>
-          </div>
-        </div>
-        <% end %>
-      </li>
-      <%# //商品がある場合は表示されないようにしましょう %>
-      <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
-    </ul>
-  </div>
-  <%# /商品一覧 %>
-</div>
-
+            <%= image_tag "star.png", class:"star-icon" %>
+          <span class='star-count'>0</span>
+        <% end %><!--end : ダミー商品ルートパス!-->
+       </li>
+      </ul>
+    </div>
+      </div>
+    <% end %>
+  <%#// 新品を出してね!ダミー商品を表示 %>
+  <%#// 商品がない場合はダミーを表示する %>
+  
     <%# ログインしているときは以下を表示する %>
     <% if user_signed_in? %>
       <%= link_to new_item_path, class: 'purchase-btn' do %>
