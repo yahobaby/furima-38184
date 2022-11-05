@@ -133,8 +133,9 @@
       <li class='list'>
         <%= link_to item_path(item) do %> <!--商品詳細機能実装時に、各商品詳細ページへ飛ばす。現在はルートパス!-->
         <div class='item-img-content'>
-        <%= image_tag item.image.variant(resize: '500x500'), class: "item-img" if item.image.attached? %>
+        <%= image_tag item.image, class: "item-img" %>
         <!--「学習メモ」.variantでリサイズ!-->
+        <!--「学習メモ」画像の大きさは、CSSで調整の為、記入不要!-->
         <!--「学習メモ」.attached?レコードにファイルが添付有無で、trueかfalseを返すメソッド。ifと組み合わせて、画像の有無によって表示するかどう判断!-->
 
           <%# 商品が売れていればsold out表示 %>
