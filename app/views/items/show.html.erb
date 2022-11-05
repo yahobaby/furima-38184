@@ -40,8 +40,7 @@
     <%# 未購入品でない場合、売切表示 %>
     <%# <% elsif @item.order.present? %> <!--購入機能実装時に再度修正!--> 
     <%# 学習メモ：.present?はオブジェクトの存在を返すメソッド %>
-     <%= link_to "売り切れました", '#',class:"disabled-button bold" %>
-    <%# else %> 
+    <% else  %>
     <%# 出品者以外で、未購入品なら、購入画面表示 %><!--購入機能実装時に再度修正!-->
      <%= link_to '購入画面に進む', '#', class:"item-red-btn"%>
     <%# end %>
@@ -50,7 +49,7 @@
 
 
     <div class="item-explain-box">
-      <span><%= "商品説明" %></span>
+      <span><%= @item.item_explain %></span>
     </div>
     <table class="detail-table">
       <tbody>
@@ -115,9 +114,7 @@
       後ろの商品 ＞
     </a>
   </div>
-  <%# 詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
-  <a href="#" class="another-item"><%= "商品のカテゴリー名" %>をもっと見る</a>
-  <%# //詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
+  <a href="#" class="another-item"><%= @item.category.name %>をもっと見る</a>
 </div>
 
 <%= render "shared/footer" %>
