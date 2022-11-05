@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index] # 「学習メモ」before_action：コントローラーの先に実行させる。もし、ログインしてないと、index(一覧表示)アクションしか使えない
+  before_action :authenticate_user!, except: [:index, :show] # 「学習メモ」before_action：コントローラーの先に実行させる。もし、ログインしてないと、index(一覧表示),show(詳細表示)アクションしか使えない
 
   def index # 一覧表示ページを表示するリクエストに対応
     @items = Item.all.order(created_at: 'DESC') # indexアクションに、インスタンス変数@itemsを定義し、すべてのitem情報を代入
@@ -18,6 +18,10 @@ class ItemsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+    @item = Item.find(params[:id])
   end
 
   private
