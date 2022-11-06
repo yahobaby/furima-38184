@@ -21,19 +21,19 @@ class ItemsController < ApplicationController
     end
   end
 
-  def show #Set_itemで対応 ： @itemテーブル内の指定したレコードからidカラムの値を取得して@userに代入する
+  def show # Set_itemで対応 ： @itemテーブル内の指定したレコードからidカラムの値を取得して@userに代入する
   end
 
   def edit # 学習メモ：投稿編集ページを表示するリクエストに対応
-           #Set_itemで対応 ： @itemテーブル内の指定したレコードからidカラムの値を取得して@userに代入する
-    if @item.user_id == current_user.id # itemを出したユーザーと、ログインユーザーが同一の場合のみ、編集ページへアクセス許可
-    else
+    # Set_itemで対応 ： @itemテーブル内の指定したレコードからidカラムの値を取得して@userに代入する
+    if @item.user_id != current_user.id # itemを出したユーザーと、ログインユーザーが違う場合は、ルートページへ移動させる
+      # 学習メモ:unless 条件式 then を活用した表記も可能である。
       redirect_to root_path
     end
   end
 
   def update # 学習メモ：データの編集を行うリクエストに対応
-    #Set_itemで対応 ： @itemテーブル内の指定したレコードからidカラムの値を取得して@userに代入する
+    # Set_itemで対応 ： @itemテーブル内の指定したレコードからidカラムの値を取得して@userに代入する
     if @item.update(item_params)
       redirect_to item_path(@item.id) # itemの編集に成功したら、当該アイテムの詳細ページへ飛ぶ
     else
@@ -45,7 +45,7 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
-  end 
+  end
 
   def item_params
     params.require(:item).permit(:image, :category_id, :item_name, :item_explain, :item_status_id, :charge_bearer_id,

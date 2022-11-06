@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller? # strong parameter
 
   private
+
   # 重要！master.keyのコピーを忘れず、外部開発環境のパソコンでbasic認証ができなかったので、一旦basic認証を削除。
   # 帰宅後、マージするとき、現状復旧します。20221106 17:15
 
