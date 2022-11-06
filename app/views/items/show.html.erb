@@ -35,7 +35,7 @@
   <% if user_signed_in? %> 
     <%# 出品者であり、未購入品であれば、編集・削除表示 %> <!--編集・削除機能実装時に再度修正!-->
     <% if current_user.id == @item.user_id %>  <!--編集・削除機能実装時に&& @item.order.nil?追加!-->
-      <%= link_to '商品の編集', '#', method: :get, class: "item-red-btn" %>
+      <%= link_to '商品の編集', edit_item_path(@item), method: :get, class: "item-red-btn" %>
       <p class='or-text'>or</p>
       <%= link_to '削除', '#', class:'item-destroy' %> <!--削除機能実装時、method: :delete,追加 !-->
 
