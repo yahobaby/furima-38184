@@ -21,7 +21,24 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+    @item = Item.find(params[:id]) # @itemテーブル内の指定したレコードからidカラムの値を取得して@userに代入する
+  end
+
+  def edit # 学習メモ：投稿編集ページを表示するリクエストに対応
+    @item = Item.find(params[:id]) # @itemテーブル内の指定したレコードからidカラムの値を取得して@userに代入する
+    if @item.user_id == current_user.id # itemを出したユーザーと、ログインユーザーが同一の場合のみ、編集ページへアクセス許可
+    else
+      redirect_to root_path
+    end
+  end
+
+  def update # 学習メモ：データの編集を行うリクエストに対応
+    @item = Item.find(params[:id]) # @itemテーブル内の指定したレコードからidカラムの値を取得して@userに代入する
+    if @item.update(item_params)
+      redirect_to item_path(@item.id) # itemの編集に成功したら、当該アイテムの詳細ページへ飛ぶ
+    else
+      render :edit
+    end
   end
 
   private
