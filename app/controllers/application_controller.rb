@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :basic_auth # basic認証
+  # before_action :basic_auth # basic認証
   before_action :configure_permitted_parameters, if: :devise_controller? # strong parameter
 
   private
@@ -8,12 +8,12 @@ class ApplicationController < ActionController::Base
   # 帰宅後、マージするとき、現状復旧します。20221106 17:15
 
   # basic認証1015////////
-  def basic_auth
-    authenticate_or_request_with_http_basic do |username, password|
-      username == ENV['BASIC_AUTH_USER'] && password == ENV['BASIC_AUTH_PASSWORD']
-      # username == 'hello' && password == 'techcamp'//環境変数設定済み1016
-    end
-  end
+  # def basic_auth
+  #   authenticate_or_request_with_http_basic do |username, password|
+  #     username == ENV['BASIC_AUTH_USER'] && password == ENV['BASIC_AUTH_PASSWORD']
+  #     # username == 'hello' && password == 'techcamp'//環境変数設定済み1016
+  #   end
+  # end
   # basic認証ここまで1015////////
 
   # strong parameter
