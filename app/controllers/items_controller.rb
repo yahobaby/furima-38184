@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show] # 「学習メモ」before_action：コントローラーの先に実行させる。もし、ログインしてないと、index(一覧表示),show(詳細表示)アクションしか使えない
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index # 一覧表示ページを表示するリクエストに対応
     @items = Item.all.order(created_at: 'DESC') # indexアクションに、インスタンス変数@itemsを定義し、すべてのitem情報を代入
@@ -38,6 +38,14 @@ class ItemsController < ApplicationController
       redirect_to item_path(@item.id) # itemの編集に成功したら、当該アイテムの詳細ページへ飛ぶ
     else
       render :edit
+    end
+  end
+
+  def destroy
+    if user_signed_in? && current_user.id == @item.user_id
+      # ログインされてであり、且つログインしているユーザーとアイテムを出品したユーザーが同一ならば
+      @item.destroy # 削除して、ルートパスへ移動させる
+      redirect_to root_path
     end
   end
 
