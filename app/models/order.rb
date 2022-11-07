@@ -4,8 +4,4 @@ class Order < ApplicationRecord
   belongs_to :item
   has_one :address
   #//アソシエーション
-
-  # カラムにバリデーション設定 & 空では保存できない
-  validates :item, presence: true
-  #// カラムにバリデーション設定 & 空では保存できない
 end
