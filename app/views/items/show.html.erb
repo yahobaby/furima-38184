@@ -12,13 +12,12 @@
 
       <%# 商品が売れている場合は、sold outを表示しましょう %><!--購入機能実装時に再度修正!--> 
       <%# orderテーブル作成後に実装 %>
-      <%# if item.order != nil %>
-      <%# <div class="sold-out">
+      <% if @item.order != nil %>
+      <div class="sold-out">
       <span>Sold Out!!</span>
-      </div> %>
-     <%# end %>
-      <%# //商品が売れている場合は、sold outを表示しましょう %><!--購入機能実装時に再度修正!--> 
-     
+      </div> 
+     <% end %>
+      <%# //商品が売れている場合は、sold outを表示しましょう %><!--購入機能実装時に再度修正!-->      
     </div>
 
     <div class="item-price-box">
@@ -32,14 +31,14 @@
 
   <%# ログイン中であれば表示 %>
   <% if user_signed_in? %> 
-    <%# 出品者であり、未購入品であれば、編集・削除表示 %> <!--購入能実装時に再度修正!-->
-    <% if current_user.id == @item.user_id && @item.order.nil?%>  <!--購入機能実装時に追加!-->
+    <%# 出品者であり、未購入品であれば、編集・削除表示 %>
+    <% if current_user.id == @item.user_id && @item.order.nil?%>
       <%= link_to '商品の編集', edit_item_path(@item), method: :get, class: "item-red-btn" %>
       <p class='or-text'>or</p>
       <%= link_to '削除', item_path(@item), method: :delete, class: "item-destroy" %> 
 
     <%# 未購入品でない場合、売切表示 %>
-    <%# <% elsif @item.order.present? <!--購入機能実装時に再度修正!-->  %>
+     <% elsif @item.order.present? %>
     <%# 学習メモ：.present?はオブジェクトの存在を返すメソッド %>
     <% else  %>
     <%# 出品者以外で、未購入品なら、購入画面表示 %><!--購入機能実装時に再度修正!-->

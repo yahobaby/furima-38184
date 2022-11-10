@@ -8,6 +8,7 @@ require("@rails/ujs").start()
 require("@rails/activestorage").start()
 require("channels")
 require("../tax_saleprofit") //new.html.erbの販売手数料や販売利益の計算読み込む
+require("../card")//トークン化を行うファイル(card.js)を読み込ませる
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference

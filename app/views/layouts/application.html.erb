@@ -5,11 +5,13 @@
     <title>Furima38184</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
+  <!--payjp.jsを読み込ませる-->
   <script type="text/javascript" src="https://js.pay.jp/v1/"></script>
   <%= stylesheet_link_tag 'application', media: 'all'%>
   <!--Webpacker::Manifest::MissingEntryError in Items#indexエラー発生//rails webpacker:installで解決1015-->
-  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  
+  <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application' %><!--JavaScript無効化の為!-->
+
 </head>
 
 <body>
