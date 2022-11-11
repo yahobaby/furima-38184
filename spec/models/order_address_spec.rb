@@ -1,3 +1,5 @@
+# 「学習メモ」テストコード実行：%bundle exec rspec spec/models/order_address_spec.rb
+
 require 'rails_helper'
 
 RSpec.describe OrderAddress, type: :model do

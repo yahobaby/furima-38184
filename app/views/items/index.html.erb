@@ -131,7 +131,7 @@
     <%# 商品データがある場合、eachメソッドで一覧表示%>
     <% @items.each do |item| %>
       <li class='list'>
-        <%= link_to item_path(item) do %> <!--商品詳細機能実装時に、各商品詳細ページへ飛ばす。現在はルートパス!-->
+        <%= link_to item_path(item) do %> 
         <div class='item-img-content'>
         <%= image_tag item.image, class: "item-img" %>
         <!--「学習メモ」.variantでリサイズ!-->

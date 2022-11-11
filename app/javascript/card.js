@@ -1,9 +1,9 @@
 const pay = () => {
-  // PAY.JPテスト公開鍵
+  //「学習メモ」 PAY.JPテスト公開鍵
   Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY);
   // 入力フォーム全体を、変数に定義
   const form = document.getElementById("charge-form");
-  // クリックした時に実行
+  //「学習メモ」 クリックした時に実行
   form.addEventListener("submit", (e) => {
     // submitボタンクリックで起こる標準設定イベントを無効化
     e.preventDefault();
@@ -38,11 +38,11 @@ const pay = () => {
       document.getElementById("card-cvc").removeAttribute("name");
 
       // フォーム情報をサーバーサイドへ送信
-      // 上段部e.preventDefault();で通常のRoRにおけるフォーム送信処理がCxlされており、JavaScript側からフォーム送信処理を行う必要あり
+      //「学習メモ」 上段部e.preventDefault();で通常のRoRにおけるフォーム送信処理がCxlされており、JavaScript側からフォーム送信処理を行う必要あり
       document.getElementById("charge-form").submit();
     });
   });
 };
 
-// payページを読み込んだ時、実行
+//「学習メモ」 payページを読み込んだ時、実行
 window.addEventListener("load", pay);

@@ -10,14 +10,14 @@
       <%= image_tag @item.image,class:"item-box-img" %>
       <!--「学習メモ」.variantによる画像の大きさは、CSSで調整の為、記入不要!-->
 
-      <%# 商品が売れている場合は、sold outを表示しましょう %><!--購入機能実装時に再度修正!--> 
+      <%# 購入された商品、sold out表示%>
       <%# orderテーブル作成後に実装 %>
       <% if @item.order != nil %>
       <div class="sold-out">
       <span>Sold Out!!</span>
       </div> 
      <% end %>
-      <%# //商品が売れている場合は、sold outを表示しましょう %><!--購入機能実装時に再度修正!-->      
+      <%# //購入された商品、sold out表示 %>
     </div>
 
     <div class="item-price-box">
@@ -41,7 +41,7 @@
      <% elsif @item.order.present? %>
     <%# 学習メモ：.present?はオブジェクトの存在を返すメソッド %>
     <% else  %>
-    <%# 出品者以外で、未購入品なら、購入画面表示 %><!--購入機能実装時に再度修正!-->
+    <%# 出品者以外で、未購入品なら、購入画面表示 %>
      <%= link_to '購入画面に進む', item_orders_path(@item), class:"item-red-btn"%>
     <%# end %>
   <% end %>
