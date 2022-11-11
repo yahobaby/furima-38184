@@ -1,7 +1,7 @@
-class OrderAddress #「購入テーブル」と「クレジットカード決済支払い者テーブル」を一度に保存できる為のファイル
+class OrderAddress # 「購入テーブル」と「クレジットカード決済支払い者テーブル」を一度に保存できる為のファイル
   # form_withメソッドに対応する機能とバリデーションを行う機能を持たす
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :post_code, :prefecture_id, :city, :address, :building_name, :phone_number, :token #保存したいカラム名
+  attr_accessor :user_id, :item_id, :post_code, :prefecture_id, :city, :address, :building_name, :phone_number, :token # 保存したいカラム名
 
   with_options presence: true do
     # orderモデルのバリデーション
@@ -16,11 +16,12 @@ class OrderAddress #「購入テーブル」と「クレジットカード決済
     # トークンのバリデーション
     validates :token
   end
-  #// form_withメソッドに対応する機能とバリデーションを行う機能を持たす
+  # // form_withメソッドに対応する機能とバリデーションを行う機能を持たす
 
-   def save
+  def save
     order = Order.create(user_id: user_id, item_id: item_id)
     # ストロングパラメーターでデータが運ばれ、それらの保存のタイミングで「order_id」が生成と保存される。
-    Address.create(order_id: order.id, post_code: post_code, prefecture_id: prefecture_id, city: city, address: address, building_name: building_name, phone_number: phone_number)
+    Address.create(order_id: order.id, post_code: post_code, prefecture_id: prefecture_id, city: city, address: address,
+                   building_name: building_name, phone_number: phone_number)
   end
 end

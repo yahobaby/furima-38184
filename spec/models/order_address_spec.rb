@@ -60,12 +60,13 @@ RSpec.describe OrderAddress, type: :model do
       it '郵便番号が空なら保存できない' do
         @order_address.post_code = ''
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Post code can't be blank", "Post code is invalid. Include hyphen(-)")
+        expect(@order_address.errors.full_messages).to include("Post code can't be blank",
+                                                               'Post code is invalid. Include hyphen(-)')
       end
       it '郵便番号にハイフンがなかったら保存できない' do
-        @order_address.post_code = 777_7777
+        @order_address.post_code = 7_777_777
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
+        expect(@order_address.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
       it '都道府県が「---」なら保存できない' do
         @order_address.prefecture_id = 0
@@ -90,7 +91,7 @@ RSpec.describe OrderAddress, type: :model do
       it '電話番号が空なら保存できない' do
         @order_address.phone_number = ''
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone number can't be blank", "Phone number is invalid")
+        expect(@order_address.errors.full_messages).to include("Phone number can't be blank", 'Phone number is invalid')
       end
       it '電話番号にハイフンがあるなら保存できない' do
         @order_address.phone_number = '777-7777-7777'
@@ -107,7 +108,6 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Token can't be blank")
       end
-      
     end
   end
 end

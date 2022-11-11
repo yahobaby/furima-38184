@@ -96,8 +96,12 @@
           <label class="form-text">都道府県</label>
           <span class="indispensable">必須</span>
         </div>
+<<<<<<< Updated upstream
         <%= f.collection_select(:prefecture_id, SendingArea.all, :id, :name, {}, {class:"select-box", id:"item-prefecture"})  %> 
         <%# ActiveHashはSending_Area.rbで、addressテーブルではprefecture_idカラムで、itemテーブルではsending_area_idカラムに命名した為 %>
+=======
+        <%= f.collection_select(:prefecture_id, SendingArea.all, :id, :name, {}, {class:"select-box", id:"item-prefecture"}) %>
+>>>>>>> Stashed changes
       </div>
       <div class="form-group">
         <div class='form-text-wrap'>

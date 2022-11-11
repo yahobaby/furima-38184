@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
-  #アソシエーション
+  # アソシエーション
   belongs_to :user
   belongs_to :item
-  has_one :address #// :address - クレジットカード支払い者情報
-  #//アソシエーション
+  has_one :address # // :address - クレジットカード支払い者情報
+  # //アソシエーション
 end
