@@ -11,7 +11,7 @@ RSpec.describe OrderAddress, type: :model do
     # RSpec::Configuration#backtrace_inclusion_patterns for more information.
     # Mysql2::Error:
     # MySQL client is not connected
-    #/Users/taehwankim/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/mysql2-0.5.4/lib/mysql2/client.rb:148:in `_query'
+    # /Users/taehwankim/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/mysql2-0.5.4/lib/mysql2/client.rb:148:in `_query'
     user = FactoryBot.create(:user)
     sleep(0.05)
     item = FactoryBot.create(:item)
