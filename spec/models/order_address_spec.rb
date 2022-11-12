@@ -4,7 +4,19 @@ require 'rails_helper'
 
 RSpec.describe OrderAddress, type: :model do
   before do
-    @order_address = FactoryBot.build(:order_address)
+    # 下記のようなエラーが発生。
+    # 先に読み込まれるものが無いようにして、0.05秒毎にテスト処理を行うようsleep(0.05)を追記し、エラー回避してます。
+    # Showing full backtrace because every line was filtered out.
+    # See docs for RSpec::Configuration#backtrace_exclusion_patterns and
+    # RSpec::Configuration#backtrace_inclusion_patterns for more information.
+    # Mysql2::Error:
+    # MySQL client is not connected
+    #/Users/taehwankim/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/mysql2-0.5.4/lib/mysql2/client.rb:148:in `_query'
+    user = FactoryBot.create(:user)
+    sleep(0.05)
+    item = FactoryBot.create(:item)
+    sleep(0.05)
+    @order_address = FactoryBot.build(:order_address, item_id: item.id, user_id: user.id)
   end
 
   describe '配送先情報の保存' do
@@ -100,6 +112,11 @@ RSpec.describe OrderAddress, type: :model do
       end
       it '電話番号が12桁以上あるなら保存できない' do
         @order_address.phone_number = 12_345_678_910_123_456_789
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Phone number is invalid')
+      end
+      it '電話番号が9桁以下あるなら保存できない' do
+        @order_address.phone_number = 12_345
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include('Phone number is invalid')
       end
