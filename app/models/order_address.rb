@@ -12,7 +12,8 @@ class OrderAddress # 「購入テーブル」と「クレジットカード決�
     validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
     validates :city
     validates :address
-    validates :phone_number, format: { with: /\A[0-9]{11}\z/, message: 'is invalid' }
+    # 電話番号は、10桁以上11桁以内の半角数値のみ保存可能
+    validates :phone_number, format: { with: /\A[0-9]{10,11}\z/, message: 'is invalid' }
     # トークンのバリデーション
     validates :token
   end
@@ -25,3 +26,5 @@ class OrderAddress # 「購入テーブル」と「クレジットカード決�
                    building_name: building_name, phone_number: phone_number)
   end
 end
+
+# 「学習メモ」：正規表現チェッカー：https://rubular.com/
