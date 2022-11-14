@@ -26,7 +26,7 @@ class ItemsController < ApplicationController
 
   def edit # 学習メモ：投稿編集ページを表示するリクエストに対応
     # Set_itemで対応 ： @itemテーブル内の指定したレコードからidカラムの値を取得して@userに代入する
-    if @item.user_id != current_user.id # itemを出したユーザーと、ログインユーザーが違う場合は、ルートページへ移動させる
+    if @item.user_id != current_user.id || @item.order.present? # itemを出したユーザーと、ログインユーザーが違う場合、又は売却されたアイテムに関してはルートページへ移動させる
       # 学習メモ:unless 条件式 then を活用した表記も可能である。
       redirect_to root_path
     end
