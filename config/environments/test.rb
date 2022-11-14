@@ -45,4 +45,8 @@ Rails.application.configure do
 
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
+  config.active_job.queue_adapter = :inline #追記
+  # active_storageを用いたモデルの単体テストをする際に、「MySQL client is not connected」というMySQLのエラーが発生する場合があり。
+  # こちらの記載で、エラー回避できる
+  # sleepメソッドも不要となる。
 end

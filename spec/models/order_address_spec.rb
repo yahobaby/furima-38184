@@ -13,9 +13,9 @@ RSpec.describe OrderAddress, type: :model do
     # MySQL client is not connected
     # /Users/taehwankim/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/mysql2-0.5.4/lib/mysql2/client.rb:148:in `_query'
     user = FactoryBot.create(:user)
-    sleep(0.05)
+    # sleep(0.05)
     item = FactoryBot.create(:item)
-    sleep(0.05)
+    # sleep(0.05)
     @order_address = FactoryBot.build(:order_address, item_id: item.id, user_id: user.id)
   end
 
