@@ -36,7 +36,10 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  # config.active_storage.service = :local
+  # ローカル環境での設定と同様に、画像の保存先をAWSのS3へ変更。
+  config.active_storage.service = :amazon
+
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil

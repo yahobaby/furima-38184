@@ -32,3 +32,15 @@ local:
 #   service: Mirror
 #   primary: local
 #   mirrors: [ amazon, google, microsoft ]
+
+# S3で使用するバケット名とリージョン名を記述
+amazon:
+ service: S3
+ region: ap-northeast-1
+ bucket: furima38184
+# ※bucket:ご自身の「バケット名」を入力 
+ #環境変数に代入した、AWSのAccess key IDとSecret access keyを使う為の記述
+ access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+ secret_access_key:  <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
+ #//環境変数に代入した、AWSのAccess key IDとSecret access keyを使う為の記述
+#//S3で使用するバケット名とリージョン名を記述

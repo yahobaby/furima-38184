@@ -92,3 +92,6 @@ gem 'image_processing', '~> 1.2'
 
 
 gem 'payjp'
+
+# S3を使用するために必要なGem
+gem "aws-sdk-s3", require: false
