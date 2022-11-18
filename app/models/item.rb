@@ -24,7 +24,7 @@ class Item < ApplicationRecord
       validates :category_id, :item_status_id, :charge_bearer_id, :sending_area_id, :delivery_days_id
     end
 
-    validates :price, numericality: { greater_than: 300, less_than: 9_999_999, only_integer: true }
+    validates :price, numericality: { greater_than: 299, less_than: 10_000_000, only_integer: true }
     # 学習メモ：only_integer: true 小数点以下は保存しない
     # 学習メモ：integer型では正規表現は働かない
   end
