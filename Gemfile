@@ -90,8 +90,13 @@ gem 'mini_magick'
 # MiniMagickでは提供できない、画像サイズを調整する機能を提供するGem
 gem 'image_processing', '~> 1.2'
 
-
+# payjpの外部API使用
 gem 'payjp'
 
 # S3を使用するために必要なGem
 gem "aws-sdk-s3", require: false
+
+#PostgreSQL使用
+group :production do
+  gem 'pg'
+end

@@ -47,8 +47,17 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+
+##元本場環境のデータベース記述
+# production:
+  # <<: *default
+  # database: furima_38184_production
+  # username: furima_38184
+  # password: <%= ENV['FURIMA_38184_DATABASE_PASSWORD'] %>
+##//元本場環境のデータベース記述
+
+# 下記述で開発環境およびテスト環境ではMySQLが、本番環境ではPostgreSQLが使用
 production:
   <<: *default
-  database: furima_38184_production
-  username: furima_38184
-  password: <%= ENV['FURIMA_38184_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  url: <%= ENV['DATABASE_URL'] %>
