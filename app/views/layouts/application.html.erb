@@ -6,7 +6,8 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <!--payjp.jsを読み込ませる-->
-  <script type="text/javascript" src="https://js.pay.jp/v1/"></script>
+  <script type="text/javascript" src="https://js.pay.jp/v2/pay.js"></script><!--PAYJP,v2のAPI!-->
+  <%# <script type="text/javascript" src="https://js.pay.jp/v1/"></script> %><!--PAYJP,v1のAPI!-->
   <%= stylesheet_link_tag 'application', media: 'all'%>
   <!--Webpacker::Manifest::MissingEntryError in Items#indexエラー発生//rails webpacker:installで解決1015-->
   <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>

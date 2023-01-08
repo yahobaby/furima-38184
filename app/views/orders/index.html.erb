@@ -16,7 +16,7 @@
         <div class='buy-item-price'>
           <p class='item-price-text'>¥<%= @item.price %></p>
           <p class='item-price-sub-text'><%= @item.charge_bearer.name %></p>
-        </div>      
+        </div>
       </div>
     </div>
     <%# /購入内容の表示 %>
@@ -46,39 +46,59 @@
       </h1>
       <div class="form-group">
         <div class='form-text-wrap'>
-          <label class="form-text">カード情報</label>
+          <%# <label class="form-text">カード情報</label> %>
+          <%# <span class="indispensable">必須</span> %>
+
+          <label for="number">カード番号</label>
           <span class="indispensable">必須</span>
+          <div id='number' class="payjs-outer form-wrap">
+            <%# ここにフォームが生成される %>
+          </div>
+          <div class='available-card'>
+            <%= image_tag 'card-visa.gif', class: 'card-logo'%>
+            <%= image_tag 'card-mastercard.gif', class: 'card-logo'%>
+            <%= image_tag 'card-jcb.gif', class: 'card-logo'%>
+            <%= image_tag 'card-amex.gif', class: 'card-logo'%>
+          </div>
+          <label for="cvc">CVC</label>
+          <span class="indispensable">必須</span>
+
+          <div id='cvc' class="payjs-outer form-wrap">
+            <%# ここにフォームが生成される %>
+          </div>
+          <label for="exp-date">有効期限</label>
+          <span class="indispensable">必須</span>
+          <div id='exp-date' class="payjs-outer form-wrap">
+            <%# ここにフォームが生成される %>
+          </div>
         </div>
-        <%= f.text_field :number, class:"input-default", id:"card-number", placeholder:"カード番号(半角英数字)", maxlength:"16" %>
-        <div class='available-card'>
-          <%= image_tag 'card-visa.gif', class: 'card-logo'%>
-          <%= image_tag 'card-mastercard.gif', class: 'card-logo'%>
-          <%= image_tag 'card-jcb.gif', class: 'card-logo'%>
-          <%= image_tag 'card-amex.gif', class: 'card-logo'%>
-        </div>
+        <!--        <%= f.text_field :number, class:"input-default", id:"card-number", placeholder:"カード番号(半角英数字)", maxlength:"16" %> !-->
       </div>
-      <div class="form-group">
+      <%# <div class="form-group">
         <div class='form-text-wrap'>
           <label class="form-text">有効期限</label>
           <span class="indispensable">必須</span>
         </div>
-        <div class='input-expiration-date-wrap'>
-          <%= f.text_area :exp_month, class:"input-expiration-date", id:"card-exp-month", placeholder:"例)3" %>
+        <div class='input-expiration-date-wrap'> %>
+
+      <!--          <%= f.text_area :exp_month, class:"input-expiration-date", id:"card-exp-month", placeholder:"例)3" %>
           <p>月</p>
-          <%= f.text_area :exp_year, class:"input-expiration-date", id:"card-exp-year", placeholder:"例)23" %>
+              <%= f.text_area :exp_year, class:"input-expiration-date", id:"card-exp-year", placeholder:"例)23" %>
           <p>年</p>
         </div>
       </div>
+!-->
+
       <div class="form-group">
         <div class='form-text-wrap'>
-          <label class="form-text">セキュリティコード</label>
-          <span class="indispensable">必須</span>
+          <%# <label class="form-text">セキュリティコード</label> %>
+          <%# <span class="indispensable">必須</span> %>
         </div>
-        <%= f.text_field :cvc, class:"input-default", id:"card-cvc", placeholder:"カード背面4桁もしくは3桁の番号", maxlength:"4" %>
+        <!--        <%= f.text_field :cvc, class:"input-default", id:"card-cvc", placeholder:"カード背面4桁もしくは3桁の番号", maxlength:"4" %>!-->
       </div>
     </div>
     <%# /カード情報の入力 %>
-    
+
     <%# 配送先の入力 %>
     <div class='shipping-address-form'>
       <h1 class='info-input-haedline'>
@@ -96,7 +116,7 @@
           <label class="form-text">都道府県</label>
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:prefecture_id, SendingArea.all, :id, :name, {}, {class:"select-box", id:"item-prefecture"})  %> 
+        <%= f.collection_select(:prefecture_id, SendingArea.all, :id, :name, {}, {class:"select-box", id:"item-prefecture"})  %>
         <%# ActiveHashはSending_Area.rbで、addressテーブルではprefecture_idカラムで、itemテーブルではsending_area_idカラムに命名した為 %>
 
       </div>
